@@ -10,18 +10,27 @@ class UserProfile(models.Model):
     
   
 class Products(models.Model):
+
+    CONDITION__CHOICES=(
+         ('SPORTS','SPORTS'),
+         ('FURNITURES','FURNITURES'),
+         ('ELECTRONICS','ELECTRONICS'),
+         ('MOBILES','MOBILES'),
+         ('OTHERS','OTHERS')
+    )
     
-    CONDITION__TYPE={
-        ("New","New"),
-        ("Used","Used")
-    }
+    
     name=models.CharField(max_length=200)
     owner=models.ForeignKey(User,on_delete=models.CASCADE)
     description=models.CharField(max_length=500)
-    condition=models.CharField(max_length=200,choices=CONDITION__TYPE)
-    category=models.ForeignKey("Category",on_delete=models.CASCADE)
+    condition=models.CharField(max_length=200)
+    category=models.CharField(max_length=20,choices=CONDITION__CHOICES)
+    photo=models.ImageField(upload_to='product_photos',null=True,blank=True)
     location=models.CharField(max_length=50)
     price=models.PositiveIntegerField()
+    updated_at=models.DateTimeField(auto_now=True)
+    
+    
     Options=(
         ("for-sale","for-sale"),
         ("exchange","exchange"),
@@ -29,23 +38,15 @@ class Products(models.Model):
     )
     status=models.CharField(max_length=30, choices=Options,default="for-sale")
     created_date=models.DateField(auto_now_add=True)
+    
 
 
     
-class Category(models.Model):
-        category_name=models.CharField(max_length=100)
-        is_activate=models.BooleanField(default=True)
-
 
 
 class Brand(models.Model):
     brand_name=models.CharField(max_length=100)
 
-    
-
-class ProductImages(models.Model):
-    product=models.ForeignKey(Products,on_delete=models.CASCADE)
-    image=models.ImageField(null=True,upload_to="product.images")
 
 
 
@@ -59,7 +60,6 @@ class Notifications(models.Model):
         ("cancelled","cancelled")
     )
     status=models.CharField(max_length=50,choices=Options)
-
 
 
 

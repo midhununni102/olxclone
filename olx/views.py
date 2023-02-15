@@ -1,10 +1,12 @@
 from django.shortcuts import render,redirect
-from olx.forms import RegistrationForm,LoginForm
-from django.views.generic import View,FormView,CreateView,TemplateView
+from olx.forms import RegistrationForm,LoginForm,UserCreationForm
+from django.views.generic import View,FormView,CreateView,TemplateView,DetailView,ListView
 from django.urls import reverse_lazy
 from django.contrib import messages
 from django.contrib.auth import authenticate,login,logout
-
+from olx.models import Products
+from olx.forms import ProductForm
+from django.http import HttpResponse
 
 
 
@@ -16,9 +18,6 @@ def signin_required(fn):
         else:
             return fn(request,*args,**kwargs)
     return wrapper
-
-class IndexView(TemplateView):
-    template_name="index.html"
 
 
 class LoginView(FormView):
@@ -48,10 +47,55 @@ class SignUpView(CreateView):
         return super().form_valid(form)
 
 
-def home(request):
-    return render(request, 'base.html') 
 
 def logout_view(request,*args,**kwargs):
     logout(request)
     messages.success(request,"logged out")
     return redirect("signin")       
+
+
+class UserProfileView(FormView):
+    template_name="userprofile.html"
+    form_class=UserCreationForm
+    success_url=reverse_lazy("home")
+    
+    def form_valid(self, form):
+       
+        messages.success(self.request,"New profile has created")
+        return super().form_valid(form)  
+
+
+
+class IndexView(ListView):
+    template_name="home.html"
+    context_object_name="products"
+    model=Products
+
+    
+
+class ProductAddView(CreateView):
+    template_name="productadd.html"
+    form_class=ProductForm
+    success_url=reverse_lazy("home")
+
+    def form_valid(self, form):
+        form.instance.user=self.request.user
+        messages.success(self.request,"product has been added")
+        return super().form_valid(form)
+    
+    def form_invalid(self, form):
+        messages.error(self.request,"coudnt add product")
+        return super().form_invalid(form)
+
+
+class ProductDetailView(DetailView):
+    model=Products
+    template_name="productdetail.html"  
+    context_object_name="product"
+    pk_url_kwarg="id"  
+    
+      
+
+
+
+

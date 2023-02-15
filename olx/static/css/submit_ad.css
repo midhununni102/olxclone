@@ -1,0 +1,149 @@
+.submit_ad
+{
+	width:75%;
+	height:auto;
+	padding:20px;
+	background:#fff;
+	margin-left:auto;
+	margin-right:auto;
+	margin-top:20px;
+	margin-bottom:10px;
+	-webkit-box-shadow: 0px 0px 7px 2px rgba(214,211,214,1);
+-moz-box-shadow: 0px 0px 7px 2px rgba(214,211,214,1);
+box-shadow: 0px 0px 7px 2px rgba(214,211,214,1);
+}
+
+.submit_top
+{
+	width:100%;
+	height:40px;
+	line-height:40px;
+	background:#F60;
+}
+
+.submit_top h1
+{
+	padding-left:10px;
+	color:#fff;
+	font-size:18px;
+}
+
+
+.f_container
+{
+	width:99.8%;
+	height:auto;
+	background:#fff;
+	margin-left:auto;
+	margin-right:auto;
+	border:1px solid #e4e0e0;
+}
+
+.group_container
+{
+	width:90%;
+	padding:10px;
+	height:auto;
+}
+ 
+
+.form_group
+{
+	width:100%;
+	height:auto;
+	margin-left:55px;
+}
+
+
+
+.shop_label
+{
+	width:110px;
+	float:left;
+	margin-top:16px;
+	font-weight:600;
+	display:block;
+	font-size:15px;
+}
+
+.shop_textbox
+{
+	width:300px;
+	height:36px;
+	padding-left:10px;
+	margin-top:8px;
+	color:#424242;
+	outline:none;
+	outline:0px;
+	border-radius:2px;
+	border:1px solid #dedbdb;
+}
+
+.shop_dis
+{
+	width:500px;
+	height:120px;
+	padding-left:10px;
+	margin-top:8px;
+	vertical-align:top;
+	color:#424242;
+	outline:none;
+	outline:0px;
+	border-radius:2px;
+	border:1px solid #dedbdb;
+}
+
+.shop_ddb
+{
+	width:312px;
+	height:39px;
+	padding-left:10px;
+	margin-top:8px;
+	color:#424242;
+	outline:none;
+	outline:0px;
+	border-radius:2px;
+	border:1px solid #dedbdb;
+}
+.shop_bt
+{
+    width:300px;
+	margin-left:110px;
+	height:45px;
+	font-weight:800;
+	margin-top:20px;
+	padding-left:10px;
+	color:#fff;
+	background:#043860;
+	cursor:pointer;
+	border-radius:2px;
+	border:1px solid #dedbdb;
+}
+
+.choose_file{
+    position:relative;
+	cursor:pointer;
+    display:inline-block;    
+	background:url(../images/upload_img.jpg) no-repeat;
+	border-radius:8px;
+    border:#d1cece solid 1px;
+    width:77px; 
+	height:77px;
+    font: normal 14px Myriad Pro, Verdana, Geneva, sans-serif;
+    color: #7f7f7f;
+    margin-top: 2px;
+}
+.choose_file input[type="file"]{
+    -webkit-appearance:none; 
+    position:absolute;
+    top:0; left:0;
+	height:77px;
+	cursor:pointer;
+    opacity:0; 
+}
+
+hr {
+	height: 6px;
+	background:url(../images/hr-12.png) repeat-x 0 0;
+    border: 0;
+}

@@ -2,6 +2,7 @@ from django import forms
 from django.contrib.auth.models import User
 from django.contrib.auth.forms import UserCreationForm
 from .models import UserProfile
+from olx.models import Products
 
 
 class RegistrationForm(UserCreationForm):
@@ -26,19 +27,12 @@ class LoginForm(forms.Form):
     username=forms.CharField(widget=forms.TextInput(attrs={"class":"form-control"}))
     password=forms.CharField(widget=forms.PasswordInput(attrs={"class":"form-control"}))
 
-class UpdateUserForm(forms.ModelForm):
-    user= forms.CharField(max_length=100,required=True,widget=forms.TextInput(attrs={'class': 'form-control'}))
-    address = forms.CharField(required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+class UserCreationForm(forms.Form):
+  class Meta:
+    model=UserProfile
+    fields=["address","phone","profile"]
 
+class ProductForm(forms.ModelForm):
     class Meta:
-        model = User
-        fields = ['user', 'address']
-
-
-class UpdateProfileForm(forms.ModelForm):
-    profile = forms.ImageField(widget=forms.FileInput(attrs={'class': 'form-control-file'}))
-    phone=forms.IntegerField(widget=forms.TextInput(attrs={'class': 'form-control', 'rows': 5}))
-
-    class Meta:
-        model = UserProfile
-        fields = ['profile', 'phone']
+        model=Products
+        fields="__all__"    
