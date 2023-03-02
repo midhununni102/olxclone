@@ -10,6 +10,29 @@ from django.contrib.auth.decorators import login_required
 from django.utils.decorators import method_decorator
 from django.views.decorators.cache import never_cache
 
+from django.shortcuts import render
+
+def chatbot(request):
+    if request.method == 'POST':
+        message = request.POST['message']
+        if message.lower() == 'hello':
+            response = 'Hi there!'   
+        elif message.lower() == 'how are you?':
+            response = 'I am doing well, thank you for asking.'
+        elif message.lower() == 'hi':
+            response = 'Hey there!!!.'    
+        elif message.lower() == 'is this product available':
+            response = 'Yes.Its Available.'  
+        elif message.lower() == 'where are you from':
+            response = 'I am from kochi..I can deliver as soon as possible.'      
+        elif message.lower() == 'how much is the rate?':
+            response = 'Same as shown in the detail page.'    
+        elif message.lower() == 'what is your name?':
+            response = 'My name is Chatbot.'
+        else:
+            response = 'Sorry, I did not understand your message.'
+        return render(request, 'chatbot.html', {'response': response})
+    return render(request, 'chatbot.html')
 
 
 
@@ -121,7 +144,7 @@ def search_view(request):
         products = Products.objects.filter(name__contains=search)
         return render(request, "search.html", {'search':search, 'products':products})
     else:
-        return render(request, "search.html")
+        return render(request, "search .html")
 
 
 
@@ -130,3 +153,5 @@ def search_view(request):
 
 class NotiView(IndexView):
     template_name="noti.html"
+
+    

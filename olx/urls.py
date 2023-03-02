@@ -13,6 +13,7 @@ urlpatterns = [
     path('edit-profile/', views.edit_profile, name='edit_profile'),
     path('noti',views.NotiView.as_view(),name='noti'),
     path('search/', views.search_view, name='search'),
+    path('chatwithseller/',views.chatbot,name='chatwithseller')
 
     # Add any additional URL patterns here
 
